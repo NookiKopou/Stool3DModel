@@ -74,7 +74,7 @@ namespace Stool
             this.ParametersGroupBox.Controls.Add(this.SeatWidthLabel);
             this.ParametersGroupBox.Location = new System.Drawing.Point(12, 12);
             this.ParametersGroupBox.Name = "ParametersGroupBox";
-            this.ParametersGroupBox.Size = new System.Drawing.Size(361, 151);
+            this.ParametersGroupBox.Size = new System.Drawing.Size(363, 151);
             this.ParametersGroupBox.TabIndex = 0;
             this.ParametersGroupBox.TabStop = false;
             this.ParametersGroupBox.Text = "Параметры";
@@ -82,11 +82,12 @@ namespace Stool
             // LegSpacingMMLabel
             // 
             this.LegSpacingMMLabel.AutoSize = true;
-            this.LegSpacingMMLabel.Location = new System.Drawing.Point(274, 123);
+            this.LegSpacingMMLabel.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.LegSpacingMMLabel.Location = new System.Drawing.Point(274, 126);
             this.LegSpacingMMLabel.Name = "LegSpacingMMLabel";
             this.LegSpacingMMLabel.Size = new System.Drawing.Size(73, 13);
             this.LegSpacingMMLabel.TabIndex = 14;
-            this.LegSpacingMMLabel.Text = "180 – 240 мм";
+            this.LegSpacingMMLabel.Text = "190 – 230 мм";
             this.LegSpacingMMLabel.Click += new System.EventHandler(this.LegSpacingMMLabel_Click);
             // 
             // LegsHeightMMLabel
@@ -218,7 +219,7 @@ namespace Stool
             this.ErrorsGroupBox.Controls.Add(this.ErrorsLabel);
             this.ErrorsGroupBox.Location = new System.Drawing.Point(13, 170);
             this.ErrorsGroupBox.Name = "ErrorsGroupBox";
-            this.ErrorsGroupBox.Size = new System.Drawing.Size(360, 86);
+            this.ErrorsGroupBox.Size = new System.Drawing.Size(362, 95);
             this.ErrorsGroupBox.TabIndex = 1;
             this.ErrorsGroupBox.TabStop = false;
             this.ErrorsGroupBox.Text = "Ошибки";
@@ -238,7 +239,7 @@ namespace Stool
             this.BuildButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BuildButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.BuildButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BuildButton.Location = new System.Drawing.Point(293, 263);
+            this.BuildButton.Location = new System.Drawing.Point(295, 272);
             this.BuildButton.Name = "BuildButton";
             this.BuildButton.Size = new System.Drawing.Size(75, 23);
             this.BuildButton.TabIndex = 2;
@@ -251,7 +252,7 @@ namespace Stool
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(382, 295);
+            this.ClientSize = new System.Drawing.Size(384, 304);
             this.Controls.Add(this.BuildButton);
             this.Controls.Add(this.ErrorsGroupBox);
             this.Controls.Add(this.ParametersGroupBox);
