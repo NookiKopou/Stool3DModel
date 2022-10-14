@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StoolModel;
+using Stool.Wrapper;
 
 namespace Stool
 {
@@ -52,8 +54,23 @@ namespace Stool
             //LegSpacingTextBox.BackColor = ErrorColor;
         }
 
+        KompasWrapper _kompasWrapper = new KompasWrapper();
+
         private void BuildButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                StoolParameters stool = null;
+
+                stool = new StoolParameters(0, 0, 0, 0, 0);
+                _kompasWrapper.StartKompas();
+                _kompasWrapper.BuildBushing(stool);
+            }
+            catch
+            {
+                MessageBox.Show("Невозможно построить деталь!", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             //ErrorsLabel.Text = "Ширина сиденья должна быть 300 – 400 мм \n" +
             //"Высота сиденья должна быть 10 – 50 мм \n" +
             //"Толщина ножек должна быть 20 – 60 мм \n" +
