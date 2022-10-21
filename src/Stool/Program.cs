@@ -16,7 +16,7 @@ namespace Stool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StoolForm());
+            Application.Run(new MainForm());
         }
     }
 }

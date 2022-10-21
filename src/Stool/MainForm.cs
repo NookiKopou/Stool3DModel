@@ -12,7 +12,7 @@ using Stool.Wrapper;
 
 namespace Stool
 {
-    public partial class StoolForm : Form
+    public partial class MainForm : Form
     {
         /// <summary>
         /// Цвет поля при ошибке
@@ -24,7 +24,7 @@ namespace Stool
         /// </summary>
         private readonly Color OkColor = Color.White;
 
-        public StoolForm()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -62,26 +62,15 @@ namespace Stool
             {
                 StoolParameters stool = null;
 
-                stool = new StoolParameters(0, 0, 0, 0, 0);
+                stool = new StoolParameters(350, 30, 40, 400, 210);
                 _kompasWrapper.StartKompas();
-                _kompasWrapper.BuildBushing(stool);
+                _kompasWrapper.BuildStool(stool);
             }
             catch
             {
                 MessageBox.Show("Невозможно построить деталь!", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //ErrorsLabel.Text = "Ширина сиденья должна быть 300 – 400 мм \n" +
-            //"Высота сиденья должна быть 10 – 50 мм \n" +
-            //"Толщина ножек должна быть 20 – 60 мм \n" +
-            //"Высота ножек должна быть 300 – 500 мм \n" +
-            //"Расстояние между ножками должна быть 190 – 230 мм \n";
-            //ErrorsLabel.ForeColor = Color.Red;
-        }
-
-        private void LegSpacingMMLabel_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -8,39 +8,37 @@ namespace StoolModel
 {
     public class StoolParameters
     {
-        // ПОМЕНЯТЬ КОММЫ!!!!!!!!
+        /// <summary>
+        /// Длина сиденья
+        /// </summary>
+        private double _seatWidth = 350;
 
         /// <summary>
-        /// Длина всей втулки
+        /// Высота сиденья
         /// </summary>
-        private double _seatWidth; 
+        private double _seatHeight = 30;
 
         /// <summary>
-        /// Длина верхней части втулки
+        /// Ширина ножек
         /// </summary>
-        private double _seatHeight;
+        private double _legsWidth = 40;
 
         /// <summary>
-        /// Диаметр верхней части втулки
+        /// Длина ножек
         /// </summary>
-        private double _legsWidth;
+        private double _legsHeight = 400;
 
         /// <summary>
-        /// Внешний диаметр втулки
+        /// Расстояние между ножками
         /// </summary>
-        private double _legsHeight;
-
-        /// <summary>
-        /// Внутренний диаметр втулки
-        /// </summary>
-        private double _legSpacing;
+        private double _legSpacing = 210;
 
         // все поля переделать в словарь
 
         /// <summary>
-        /// Возвращает и устанавливает значение длины всей втулки
+        /// Возвращает и устанавливает значение длины сиденья
         /// </summary>
-        public double TotalLength
+        public double SeatWidth
         {
             get
             {
@@ -55,9 +53,9 @@ namespace StoolModel
         }
 
         /// <summary>
-        /// Возвращает и устанавливает значение длины верхней части втулки
+        /// Возвращает и устанавливает значение высоты сиденья
         /// </summary>
-        public double TopLength
+        public double SeatHeight
         {
             get
             {
@@ -72,9 +70,9 @@ namespace StoolModel
         }
 
         /// <summary>
-        /// Возвращает и устанавливает значение диаметра верхей части втулки
+        /// Возвращает и устанавливает значение ширины ножек
         /// </summary>
-        public double TopDiametr
+        public double LegsWidth
         {
             get
             {
@@ -90,9 +88,9 @@ namespace StoolModel
 
 
         /// <summary>
-        /// Возвращает и устанавливает значение внешнего диаметра втулки
+        /// Возвращает и устанавливает значение длины ножек
         /// </summary>
-        public double OuterDiametr
+        public double LegsHeight
         {
             get
             {
@@ -107,9 +105,9 @@ namespace StoolModel
         }
 
         /// <summary>
-        /// Возвращает и устанавливает значение внутреннего диаметра втулки
+        /// Возвращает и устанавливает значение расстояния между ножками
         /// </summary>
-        public double InnerDiametr
+        public double LegSpacing
         {
             get
             {
@@ -118,27 +116,27 @@ namespace StoolModel
 
             set
             {
-                
+
                 _legSpacing = value;
             }
         }
 
         /// <summary>
-        /// Конструктор втулки без гравировки
+        /// Конструктор
         /// </summary>
-        /// <param name="totalLength">Длина всей втулки</param>
-        /// <param name="topLength">Длина верхней части втулки</param>
-        /// <param name="topDiametr">Диаметр верхней части втулки</param>
-        /// <param name="outerDiametr">Внешний диаметр втулки</param>
-        /// <param name="innerDiametr">Внутренний диаметр втулки</param>
-        public StoolParameters(double totalLength, double topLength,
-            double topDiametr, double outerDiametr, double innerDiametr)
+        /// <param name="seatWidth"></param>
+        /// <param name="seatHeight"></param>
+        /// <param name="legsWidtht"></param>
+        /// <param name="legsHeight"></param>
+        /// <param name="legSpacing"></param>
+        public StoolParameters(double seatWidth, double seatHeight, 
+            double legsWidtht, double legsHeight, double legSpacing)
         {
-            TotalLength = totalLength;
-            TopLength = topLength;
-            TopDiametr = topDiametr;
-            OuterDiametr = outerDiametr;
-            InnerDiametr = innerDiametr;           
+            SeatWidth = seatWidth;
+            SeatHeight = seatHeight;
+            LegsWidth = legsWidtht;
+            LegsHeight = legsHeight;
+            LegSpacing = legSpacing;           
         }
 
             //"Ширина сиденья должна быть 300 – 400 мм \n" +

@@ -1,7 +1,7 @@
 ﻿
 namespace Stool
 {
-    partial class StoolForm
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -29,7 +29,7 @@ namespace Stool
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StoolForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ParametersGroupBox = new System.Windows.Forms.GroupBox();
             this.LegSpacingMMLabel = new System.Windows.Forms.Label();
             this.LegsHeightMMLabel = new System.Windows.Forms.Label();
@@ -88,7 +88,6 @@ namespace Stool
             this.LegSpacingMMLabel.Size = new System.Drawing.Size(73, 13);
             this.LegSpacingMMLabel.TabIndex = 14;
             this.LegSpacingMMLabel.Text = "190 – 230 мм";
-            this.LegSpacingMMLabel.Click += new System.EventHandler(this.LegSpacingMMLabel_Click);
             // 
             // LegsHeightMMLabel
             // 

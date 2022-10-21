@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Kompas6API5;
 using Kompas6Constants3D;
-using Kompas6API5;
 using StoolModel;
 
 namespace Stool.Wrapper
@@ -16,6 +11,9 @@ namespace Stool.Wrapper
         /// </summary>
         private KompasObject _kompas;
 
+        /// <summary>
+        /// Деталь
+        /// </summary>
         private ksPart _part;
 
         /// <summary>
@@ -32,27 +30,41 @@ namespace Stool.Wrapper
         /// <summary>
         /// Построение детали по заданным параметрам
         /// </summary>
-        /// <param name="bushing">Объект втулки</param>
-        public void CreateDetail(StoolParameters stool)
+        /// <param name="stool">Объект </param>
+        public void Build(StoolParameters StoolParameters)
         {
-            var document = (ksDocument3D)_kompas.ActiveDocument3D();
-            _part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);
-            ExampleCreate();
+            double seatWidth = StoolParameters.SeatWidth;
+            double seatHeight = StoolParameters.SeatHeight;
+            double legsWidth = StoolParameters.LegsWidth;
+            double legsHeight = StoolParameters.LegsHeight;
+            double legSpacing = StoolParameters.LegSpacing;
 
+            var document = (ksDocument3D)_kompas.ActiveDocument3D();
+
+            _part = (ksPart)document.GetPart((short)Part_Type.pTop_Part);
+
+            _part.name = "Stool";
+
+            _part.SetAdvancedColor(8628426, 0.8, 0.8, 0.8, 0.8, 1);
+
+            _part.Update();
+
+            BuildSeat();
+            BuildLeg();
+            BuildRung();
+            BuildSideBar();
         }
 
-        private void ExampleCreate()
+        private void BuildSeat()
         {
-            ksEntity entitySketch = (ksEntity)_part.NewEntity((short)
-                Obj3dType.o3d_sketch);
-            ksSketchDefinition sketchDefinition = (ksSketchDefinition)
-                entitySketch.GetDefinition();
-            ksEntity basePlane = (ksEntity)_part.GetDefaultEntity((short)
-                Obj3dType.o3d_planeXOY);
+            ksEntity entitySketch = (ksEntity)_part.NewEntity((short)Obj3dType.o3d_sketch);
+            ksSketchDefinition sketchDefinition = (ksSketchDefinition)entitySketch.GetDefinition();
+            ksEntity basePlane = (ksEntity)_part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
             sketchDefinition.SetPlane(basePlane);
             entitySketch.Create();
-            ksDocument2D sketchEdit = (ksDocument2D)sketchDefinition.
-                BeginEdit();
+
+            ksDocument2D sketchEdit = (ksDocument2D)sketchDefinition.BeginEdit();
+
             sketchEdit.ksLineSeg(-175, -145, -175, 145, 1);
             sketchEdit.ksLineSeg(175, -145, 175, 145, 1);
             sketchEdit.ksLineSeg(-145, 175, 145, 175, 1);
@@ -61,24 +73,279 @@ namespace Stool.Wrapper
             sketchEdit.ksArcByPoint(145, 145, 30, 145, 175, 175, 145, -1, 1);
             sketchEdit.ksArcByPoint(145, -145, 30, 145, -175, 175, -145, 1, 1);
             sketchEdit.ksArcByPoint(-145, -145, 30, -145, -175, -175, -145, -1, 1);
+
             sketchDefinition.EndEdit();
-            ExtrudeSketch(_part, entitySketch, 20, false);
-            //var iPart7 = _kompas.TopPart;
+
+            ExtrudeSketch(_part, entitySketch, 20, true);
             
+            // скругление
+
             ksEntity obj = _part.NewEntity((short)Obj3dType.o3d_fillet);
             ksFilletDefinition iDefinition = obj.GetDefinition();
             iDefinition.radius = 15;
             iDefinition.tangent = true;
             ksEntityCollection iArray = iDefinition.array();
             ksEntityCollection iCollection = _part.EntityCollection((short)Obj3dType.o3d_face);
-            iCollection.SelectByPoint(0, 0, -20);
+            iCollection.SelectByPoint(0, 0, 20);
             ksEntity iFace = iCollection.Last();
             iArray.Add(iFace);
             obj.Create();
         }
 
-        private void ExtrudeSketch(ksPart part, ksEntity sketch,
-            double height, bool type)
+        private void BuildLeg()
+        {
+            ksEntity entitySketch = (ksEntity)_part.NewEntity((short)Obj3dType.o3d_sketch);
+            ksSketchDefinition sketchDefinition = (ksSketchDefinition)entitySketch.GetDefinition();
+            ksEntity basePlane = (ksEntity)_part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
+            sketchDefinition.SetPlane(basePlane);
+            entitySketch.Create();
+
+            ksDocument2D sketchEdit = (ksDocument2D)sketchDefinition.BeginEdit();
+
+            // ножки
+            sketchEdit.ksLineSeg(-145, 145, -145, 105, 1);
+            sketchEdit.ksLineSeg(-145, 105, -105, 105, 1);
+            sketchEdit.ksLineSeg(-105, 105, -105, 145, 1);
+            sketchEdit.ksLineSeg(-105, 145, -145, 145, 1);
+
+            sketchEdit.ksLineSeg(105, 145, 105, 105, 1);
+            sketchEdit.ksLineSeg(105, 105, 145, 105, 1);
+            sketchEdit.ksLineSeg(145, 105, 145, 145, 1);
+            sketchEdit.ksLineSeg(145, 145, 105, 145, 1);
+
+            sketchEdit.ksLineSeg(145, -105, 105, -105, 1);
+            sketchEdit.ksLineSeg(105, -105, 105, -145, 1);
+            sketchEdit.ksLineSeg(105, -145, 145, -145, 1);
+            sketchEdit.ksLineSeg(145, -145, 145, -105, 1);
+
+            sketchEdit.ksLineSeg(-145, -105, -105, -105, 1);
+            sketchEdit.ksLineSeg(-105, -105, -105, -145, 1);
+            sketchEdit.ksLineSeg(-105, -145, -145, -145, 1);
+            sketchEdit.ksLineSeg(-145, -105, -145, -145, 1);
+
+            sketchDefinition.EndEdit();
+
+            ExtrudeSketch(_part, entitySketch, 300, false);
+
+            //элемент по сечениям
+            //??
+
+            // скругление
+            ksEntity obj = _part.NewEntity((short)Obj3dType.o3d_fillet);
+            ksFilletDefinition iDefinition = obj.GetDefinition();
+            iDefinition.radius = 5;
+            iDefinition.tangent = true;
+            ksEntityCollection iArray = iDefinition.array();
+
+            ksEntityCollection iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(105, 145, -150);
+            ksEntity iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(105, 105, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(145, 105, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(145, 145, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(-105, 145, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(-105, 105, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(-145, 105, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(-145, 145, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(105, -145, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(105, -105, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(145, -105, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(145, -145, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(-145, -145, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(-105, -145, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(-105, -105, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(-145, -105, -150);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+
+            obj.Create();
+        }
+
+        private void BuildRung()
+        {
+            ksEntity iSketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
+            ksSketchDefinition iDefinition = (ksSketchDefinition)iSketch.GetDefinition();
+            ksEntityCollection iCollection = _part.EntityCollection((short)Obj3dType.o3d_face);
+            iCollection.SelectByPoint(105, 125, -275);
+            ksEntity iPlane = iCollection.First();
+            iDefinition.SetPlane(iPlane);
+            iSketch.Create();
+
+            ksDocument2D _ksDocument2D = (ksDocument2D)iDefinition.BeginEdit();
+
+            _ksDocument2D.ksLineSeg(115, -110, 135, -110, 1);
+            _ksDocument2D.ksLineSeg(140, -115, 140, -135, 1);
+            _ksDocument2D.ksLineSeg(135, -140, 115, -140, 1);
+            _ksDocument2D.ksLineSeg(110, -115, 110, -135, 1);
+            _ksDocument2D.ksArcByPoint(115, -135, 5, 110, -135, 115, -140, 1, 1);
+            _ksDocument2D.ksArcByPoint(115, -115, 5, 110, -115, 115, -110, -1, 1);
+            _ksDocument2D.ksArcByPoint(135, -115, 5, 135, -110, 140, -115, -1, 1);
+            _ksDocument2D.ksArcByPoint(135, -135, 5, 135, -140, 140, -135, 1, 1);
+            iDefinition.EndEdit();
+
+            ExtrudeSketch(_part, iSketch, 210, true);
+
+            //iSketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
+            //iDefinition = (ksSketchDefinition)iSketch.GetDefinition();
+            //iCollection = _part.EntityCollection((short)Obj3dType.o3d_face);
+            //iCollection.SelectByPoint(-105, 125, -275);
+            //iPlane = iCollection.First();
+            //iDefinition.SetPlane(iPlane);
+            //iSketch.Create();
+
+            //_ksDocument2D = (ksDocument2D)iDefinition.BeginEdit();
+
+            //_ksDocument2D.ksLineSeg(115, -110, 135, -110, 1);
+            //_ksDocument2D.ksLineSeg(140, -115, 140, -135, 1);
+            //_ksDocument2D.ksLineSeg(135, -140, 115, -140, 1);
+            //_ksDocument2D.ksLineSeg(110, -115, 110, -135, 1);
+            //_ksDocument2D.ksArcByPoint(115, -135, 5, 110, -135, 115, -140, 1, 1);
+            //_ksDocument2D.ksArcByPoint(115, -115, 5, 110, -115, 115, -110, -1, 1);
+            //_ksDocument2D.ksArcByPoint(135, -115, 5, 135, -110, 140, -115, -1, 1);
+            //_ksDocument2D.ksArcByPoint(135, -135, 5, 135, -140, 140, -135, 1, 1);
+            //iDefinition.EndEdit();
+
+            //ExtrudeSketch(_part, iSketch, 210, true);
+        }
+
+        private void BuildSideBar()
+        {
+            ksEntity iSketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
+            ksSketchDefinition iDefinition = (ksSketchDefinition)iSketch.GetDefinition();
+            ksEntityCollection iCollection = _part.EntityCollection((short)Obj3dType.o3d_face);
+            iCollection.SelectByPoint(0, 0, 0);
+            ksEntity iPlane = iCollection.First();
+            iDefinition.SetPlane(iPlane);
+            iSketch.Create();
+
+
+
+            ksDocument2D _ksDocument2D = (ksDocument2D)iDefinition.BeginEdit();
+
+            _ksDocument2D.ksLineSeg(110, -105, 140, -105, 1);
+            _ksDocument2D.ksLineSeg(140, -105, 140, 105, 1);
+            _ksDocument2D.ksLineSeg(140, 105, 110, 105, 1);
+            _ksDocument2D.ksLineSeg(110, 105, 110, -105, 1);
+
+            _ksDocument2D.ksLineSeg(-105, 140, 105, 140, 1);
+            _ksDocument2D.ksLineSeg(-105, 110, 105, 110, 1);
+            _ksDocument2D.ksLineSeg(-105, 140, -105, 110, 1);
+            _ksDocument2D.ksLineSeg(105, 140, 105, 110, 1);
+
+            _ksDocument2D.ksLineSeg(-110, 105, -110, -105, 1);
+            _ksDocument2D.ksLineSeg(-140, -105, -140, 105, 1);
+            _ksDocument2D.ksLineSeg(-140, 105, -110, 105, 1);
+            _ksDocument2D.ksLineSeg(-140, -105, -110, -105, 1);
+
+            _ksDocument2D.ksLineSeg(-105, -140, 105, -140, 1);
+            _ksDocument2D.ksLineSeg(105, -110, -105, -110, 1);
+            _ksDocument2D.ksLineSeg(-105, -110, -105, -140, 1);
+            _ksDocument2D.ksLineSeg(105, -110, 105, -140, 1);
+
+            iDefinition.EndEdit();
+            ExtrudeSketch(_part, iSketch, 55, true);
+
+            // скругление
+            ksEntity obj = _part.NewEntity((short)Obj3dType.o3d_fillet);
+            ksFilletDefinition iDefinition1 = obj.GetDefinition();
+            iDefinition1.radius = 5;
+            iDefinition1.tangent = true;
+            ksEntityCollection iArray = iDefinition1.array();
+
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(-110, 0, -55);
+            ksEntity iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(-140, 0, -55);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(0, -140, -55);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(0, -110, -55);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(140, 0, -55);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(110, 0, -55);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(0, 140, -55);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_edge);
+            iCollection.SelectByPoint(0, 110, -55);
+            iEdge = iCollection.Last();
+            iArray.Add(iEdge);
+
+            obj.Create();
+        }
+
+        /// <summary>
+        /// Выдавливание
+        /// </summary>
+        /// <param name="part"></param>
+        /// <param name="sketch"></param>
+        /// <param name="height"></param>
+        /// <param name="type"></param>
+        private void ExtrudeSketch(ksPart part, ksEntity sketch, double height, bool type)
         {
             ksEntity entityExtrusion = (ksEntity)part.NewEntity((short)
                 Obj3dType.o3d_baseExtrusion);
@@ -86,17 +353,13 @@ namespace Stool.Wrapper
                 (ksBaseExtrusionDefinition)entityExtrusion.GetDefinition();
             if (type == false)
             {
-                extrusionDefinition.directionType = (short)Direction_Type.
-                    dtReverse;
-                extrusionDefinition.SetSideParam(false,
-                    (short)End_Type.etBlind, height);
+                extrusionDefinition.directionType = (short)Direction_Type.dtReverse;
+                extrusionDefinition.SetSideParam(false,(short)End_Type.etBlind, height);
             }
             if (type == true)
             {
-                extrusionDefinition.directionType = (short)Direction_Type.
-                    dtNormal;
-                extrusionDefinition.SetSideParam(true,
-                    (short)End_Type.etBlind, height);
+                extrusionDefinition.directionType = (short)Direction_Type.dtNormal;
+                extrusionDefinition.SetSideParam(true, (short)End_Type.etBlind, height);
             }
             extrusionDefinition.SetSketch(sketch);
             entityExtrusion.Create();

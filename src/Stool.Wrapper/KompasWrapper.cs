@@ -52,17 +52,16 @@ namespace Stool.Wrapper
             }
         }
 
-
         /// <summary>
-        /// Построение втулки
+        /// Построение детали
         /// </summary>
-        /// <param name="bushing"></param>
-        public void BuildBushing(StoolParameters bushing)
+        /// <param name="stool"></param>
+        public void BuildStool(StoolParameters stool)
         {
             try
             {
                 StoolBuilder detail = new StoolBuilder(_kompas);
-                detail.CreateDetail(bushing);
+                detail.Build(stool);
             }
             catch
             {
