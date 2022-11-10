@@ -125,10 +125,7 @@ namespace Stool.Wrapper
 
             sketchDefinition.EndEdit();
 
-            ExtrudeSketch(_part, entitySketch, 300, false);
-
-            //элемент по сечениям
-            //??
+            ExtrudeSketch(_part, entitySketch, 400, false);
 
             // скругление
             ksEntity obj = _part.NewEntity((short)Obj3dType.o3d_fillet);
@@ -220,39 +217,79 @@ namespace Stool.Wrapper
 
             ksDocument2D _ksDocument2D = (ksDocument2D)iDefinition.BeginEdit();
 
-            _ksDocument2D.ksLineSeg(115, -110, 135, -110, 1);
-            _ksDocument2D.ksLineSeg(140, -115, 140, -135, 1);
-            _ksDocument2D.ksLineSeg(135, -140, 115, -140, 1);
-            _ksDocument2D.ksLineSeg(110, -115, 110, -135, 1);
-            _ksDocument2D.ksArcByPoint(115, -135, 5, 110, -135, 115, -140, 1, 1);
-            _ksDocument2D.ksArcByPoint(115, -115, 5, 110, -115, 115, -110, -1, 1);
-            _ksDocument2D.ksArcByPoint(135, -115, 5, 135, -110, 140, -115, -1, 1);
-            _ksDocument2D.ksArcByPoint(135, -135, 5, 135, -140, 140, -135, 1, 1);
+            _ksDocument2D.ksLineSeg(190, -110, 210, -110, 1);
+            _ksDocument2D.ksLineSeg(215, -115, 215, -135, 1);
+            _ksDocument2D.ksLineSeg(210, -140, 190, -140, 1);
+            _ksDocument2D.ksLineSeg(185, -115, 185, -135, 1);
+            _ksDocument2D.ksArcByPoint(190, -135, 5, 185, -135, 190, -140, 1, 1);
+            _ksDocument2D.ksArcByPoint(190, -115, 5, 185, -115, 190, -110, -1, 1);
+            _ksDocument2D.ksArcByPoint(210, -115, 5, 210, -110, 215, -115, -1, 1);
+            _ksDocument2D.ksArcByPoint(210, -135, 5, 210, -140, 215, -135, 1, 1);
             iDefinition.EndEdit();
-
             ExtrudeSketch(_part, iSketch, 210, true);
 
-            //iSketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
-            //iDefinition = (ksSketchDefinition)iSketch.GetDefinition();
-            //iCollection = _part.EntityCollection((short)Obj3dType.o3d_face);
-            //iCollection.SelectByPoint(-105, 125, -275);
-            //iPlane = iCollection.First();
-            //iDefinition.SetPlane(iPlane);
-            //iSketch.Create();
+            iSketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
+            iDefinition = (ksSketchDefinition)iSketch.GetDefinition();
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_face);
+            iCollection.SelectByPoint(-105, 125, -275);
+            iPlane = iCollection.First();
+            iDefinition.SetPlane(iPlane);
+            iSketch.Create();
 
-            //_ksDocument2D = (ksDocument2D)iDefinition.BeginEdit();
+            _ksDocument2D = (ksDocument2D)iDefinition.BeginEdit();
 
-            //_ksDocument2D.ksLineSeg(115, -110, 135, -110, 1);
-            //_ksDocument2D.ksLineSeg(140, -115, 140, -135, 1);
-            //_ksDocument2D.ksLineSeg(135, -140, 115, -140, 1);
-            //_ksDocument2D.ksLineSeg(110, -115, 110, -135, 1);
-            //_ksDocument2D.ksArcByPoint(115, -135, 5, 110, -135, 115, -140, 1, 1);
-            //_ksDocument2D.ksArcByPoint(115, -115, 5, 110, -115, 115, -110, -1, 1);
-            //_ksDocument2D.ksArcByPoint(135, -115, 5, 135, -110, 140, -115, -1, 1);
-            //_ksDocument2D.ksArcByPoint(135, -135, 5, 135, -140, 140, -135, 1, 1);
-            //iDefinition.EndEdit();
+            _ksDocument2D.ksLineSeg(-190, 110, -210, 110, 1);
+            _ksDocument2D.ksLineSeg(-215, 115, -215, 135, 1);
+            _ksDocument2D.ksLineSeg(-210, 140, -190, 140, 1);
+            _ksDocument2D.ksLineSeg(-185, 115, -185, 135, 1);
+            _ksDocument2D.ksArcByPoint(-190, 135, 5, -185, 135, -190, 140, 1, 1);
+            _ksDocument2D.ksArcByPoint(-190, 115, 5, -185, 115, -190, 110, -1, 1);
+            _ksDocument2D.ksArcByPoint(-210, 115, 5, -210, 110, -215, 115, -1, 1);
+            _ksDocument2D.ksArcByPoint(-210, 135, 5, -210, 140, -215, 135, 1, 1);
+            iDefinition.EndEdit();
+            ExtrudeSketch(_part, iSketch, 210, true);
 
-            //ExtrudeSketch(_part, iSketch, 210, true);
+            iSketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
+            iDefinition = (ksSketchDefinition)iSketch.GetDefinition();
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_face);
+            iCollection.SelectByPoint(-125, -105, -225);
+            iPlane = iCollection.First();
+            iDefinition.SetPlane(iPlane);
+            iSketch.Create();
+
+            _ksDocument2D = (ksDocument2D)iDefinition.BeginEdit();
+
+            _ksDocument2D.ksLineSeg(-115, 185, -135, 185, 1);
+            _ksDocument2D.ksLineSeg(-140, 190, -140, 210, 1);
+            _ksDocument2D.ksLineSeg(-135, 215, -115, 215, 1);
+            _ksDocument2D.ksLineSeg(-110, 190, -110, 210, 1);
+            _ksDocument2D.ksArcByPoint(-115, 210, 5, -110, 210, -115, 215, 1, 1);
+            _ksDocument2D.ksArcByPoint(-115, 190, 5, -110, 190, -115, 185, -1, 1);
+            _ksDocument2D.ksArcByPoint(-135, 190, 5, -135, 185, -140, 190, -1, 1);
+            _ksDocument2D.ksArcByPoint(-135, 210, 5, -135, 215, -140, 210, 1, 1);
+            iDefinition.EndEdit();
+            ExtrudeSketch(_part, iSketch, 210, true);
+
+            iSketch = _part.NewEntity((short)Obj3dType.o3d_sketch);
+            iDefinition = (ksSketchDefinition)iSketch.GetDefinition();
+            iCollection = _part.EntityCollection((short)Obj3dType.o3d_face);
+            iCollection.SelectByPoint(125, 105, -225);
+            iPlane = iCollection.First();
+            iDefinition.SetPlane(iPlane);
+            iSketch.Create();
+
+            _ksDocument2D = (ksDocument2D)iDefinition.BeginEdit();
+
+            _ksDocument2D.ksLineSeg(115, -185, 135, -185, 1);
+            _ksDocument2D.ksLineSeg(140, -190, 140, -210, 1);
+            _ksDocument2D.ksLineSeg(135, -215, 115, -215, 1);
+            _ksDocument2D.ksLineSeg(110, -190, 110, -210, 1);
+            _ksDocument2D.ksArcByPoint(115, -210, 5, 110, -210, 115, -215, 1, 1);
+            _ksDocument2D.ksArcByPoint(115, -190, 5, 110, -190, 115, -185, -1, 1);
+            _ksDocument2D.ksArcByPoint(135, -190, 5, 135, -185, 140, -190, -1, 1);
+            _ksDocument2D.ksArcByPoint(135, -210, 5, 135, -215, 140, -210, 1, 1);
+            iDefinition.EndEdit();
+            ExtrudeSketch(_part, iSketch, 210, true);
         }
 
         private void BuildSideBar()
@@ -264,8 +301,6 @@ namespace Stool.Wrapper
             ksEntity iPlane = iCollection.First();
             iDefinition.SetPlane(iPlane);
             iSketch.Create();
-
-
 
             ksDocument2D _ksDocument2D = (ksDocument2D)iDefinition.BeginEdit();
 

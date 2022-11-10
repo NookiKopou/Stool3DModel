@@ -9,34 +9,58 @@ namespace StoolModel
     class Parameter
     {
         /// <summary>
-        /// Перечисление параметров 
+        /// Максимальная величина
         /// </summary>
-        public enum XWingParameters
+        private readonly int _maxValue;
+
+        /// <summary>
+        /// Минимальная величина
+        /// </summary>
+        private readonly int _minValue;
+
+        /// <summary>
+        /// Введенная величина
+        /// </summary>
+        private double _value;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly ParameterType _parameterType;
+
+        /// <summary>
+        /// Возвращает и устанавливает значение
+        /// </summary>
+        public double Value
         {
-        /// <summary>
-        /// Длина сиденья
-        /// </summary>
-        SeatWidth,
+            get => _value;
+            set
+            {
+                if (CheckValues(value))
+                {
+                    _value = value;
+                }
+            }
+        }
 
-        /// <summary>
-        /// Ширина сиденья
-        /// </summary>
-        SeatHeight,
+        public Parameter(int minValue, double value, int maxValue, ParameterType parameterType)           
+        {
+            _minValue = minValue;
+            _maxValue = maxValue;
+            _parameterType = parameterType;
+            Value = value;
+        }
 
-        /// <summary>
-        /// Ширина ножек
-        /// </summary>
-        LegsWidth,
-
-        /// <summary>
-        /// Длина ножек
-        /// </summary>
-        LegsHeight,
-
-        /// <summary>
-        /// Расстояние между ножками
-        /// </summary>
-        LegSpacing
+        private bool CheckValues(double value)
+        {
+            if (value < _minValue)
+            {
+                //ошибка
+                return false;
+            }
+            if (!(value > _maxValue)) return true;
+            //ошибка
+            return false;
         }
     }
 }

@@ -6,94 +6,34 @@ using System.Threading.Tasks;
 
 namespace StoolModel
 {
-    class ParameterType
+    /// <summary>
+    /// Перечисление параметров
+    /// </summary>
+    public enum ParameterType
     {
         /// <summary>
-        /// Максимальная величина
+        /// Длина сиденья
         /// </summary>
-        private int _maxValue;
+        SeatWidth,
 
         /// <summary>
-        /// Минимальная величина
+        /// Ширина сиденья
         /// </summary>
-        private int _minValue;
+        SeatHeight,
 
         /// <summary>
-        /// Введенная величина
+        /// Ширина ножек
         /// </summary>
-        private double _value;
+        LegsWidth,
 
         /// <summary>
-        /// Название параметра
+        /// Длина ножек
         /// </summary>
-        private Parameter _parameterName;
+        LegsHeight,
 
         /// <summary>
-        /// Возвращает и устанавливает максимальное значение 
+        /// Расстояние между ножками
         /// </summary>
-        public int MaxValue
-        {
-            get
-            {
-                return _maxValue;
-            }
-
-            set
-            {
-
-                _maxValue = value;
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и устанавливает минимальное значение
-        /// </summary>
-        public int MinValue
-        {
-            get
-            {
-                return _minValue;
-            }
-
-            set
-            {
-
-                _minValue = value;
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и устанавливает значение
-        /// </summary>
-        public double Value
-        {
-            get
-            {
-                return _value;
-            }
-
-            set
-            {
-
-                _value = value;
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и устанавливает имя параметра 
-        /// </summary>
-        public Parameter ParameterName
-        {
-            get
-            {
-                return _parameterName;
-            }
-
-            set
-            {
-
-                _parameterName = value;
-            }
-        }
+        LegSpacing
     }
 }

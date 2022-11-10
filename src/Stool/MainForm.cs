@@ -15,6 +15,11 @@ namespace Stool
     public partial class MainForm : Form
     {
         /// <summary>
+        /// Объект StoolParameters
+        /// </summary>
+        private StoolParameters stoolParameters = null;
+
+        /// <summary>
         /// Цвет поля при ошибке
         /// </summary>
         private readonly Color ErrorColor = Color.LightPink;
@@ -60,11 +65,9 @@ namespace Stool
         {
             try
             {
-                StoolParameters stool = null;
-
-                stool = new StoolParameters(350, 30, 40, 400, 210);
+                stoolParameters = new StoolParameters(350, 30, 40, 400, 210);
                 _kompasWrapper.StartKompas();
-                _kompasWrapper.BuildStool(stool);
+                _kompasWrapper.BuildStool(stoolParameters);
             }
             catch
             {
