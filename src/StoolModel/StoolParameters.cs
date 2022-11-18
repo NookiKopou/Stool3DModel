@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace StoolModel
 {
+    // TODO: XML
     public class StoolParameters
     {
         /// <summary>
@@ -13,6 +14,7 @@ namespace StoolModel
         /// <summary>
         /// Словарь ошибок
         /// </summary>
+        // TODO: Нужен ли set? Должен ли быть публичным?
         public Dictionary<ParameterType, string> Errors { get; set; }
 
         /// <summary>
@@ -55,6 +57,7 @@ namespace StoolModel
         /// <param name="legsHeight">Ширина ножек</param>
         /// <param name="legSpacing">Расстояние между ножками</param>
         /// <param name="seatHeight">Высота сиденья</param>
+        // TODO: Не используется. Нужен?
         public void SetParameters(double seatWidth, double seatHeight,
             double legsWidth, double legsHeight, double legSpacing)
         {

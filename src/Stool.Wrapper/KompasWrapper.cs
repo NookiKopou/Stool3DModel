@@ -5,6 +5,7 @@ using Kompas6Constants3D;
 
 namespace Stool.Wrapper
 {
+    // TODO: XML
     public class KompasWrapper
     {
         /// <summary>
@@ -263,7 +264,8 @@ namespace Stool.Wrapper
         public ksEntity BuildSegmentsWithArcsByPoint(double[] planePoint,
             double[,] segments, double[,] arcs, bool isMustBeMirrored)
         {
-            ksEntity plane = CreatePlaneByPoint(planePoint[0], planePoint[1], planePoint[2]);
+            ksEntity plane = CreatePlaneByPoint(planePoint[0], planePoint[1],
+	            planePoint[2]);
             ksEntity sketch =
                 BuildSegmentsWithArcs(plane, segments, arcs, isMustBeMirrored);
             return sketch;

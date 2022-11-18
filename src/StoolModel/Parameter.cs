@@ -2,6 +2,7 @@
 
 namespace StoolModel
 {
+	// TODO: XML
     public class Parameter
     {
         /// <summary>
@@ -82,7 +83,8 @@ namespace StoolModel
                 _errors.Add(_parameterType, _valueErrorMessage);
                 return false;
             }
-            else return true;
+            
+            return true;
         }
     }
 }

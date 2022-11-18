@@ -1,5 +1,6 @@
 ﻿using StoolModel;
-
+// TODO: Вынести решение из папки с проектом StoolView
+// TODO: Исправить построение проножка
 namespace Stool.Wrapper
 {
     public class StoolBuilder
@@ -12,6 +13,7 @@ namespace Stool.Wrapper
         /// <summary>
         /// Построение детали по заданным параметрам
         /// </summary>
+        // TODO: Ссылки
         public void Build(StoolParameters stoolParameters)
         {
             _wrapper.StartKompas();
@@ -28,6 +30,7 @@ namespace Stool.Wrapper
             var legSpacing =
                 stoolParameters.Parameters[ParameterType.LegSpacing].Value;
 
+	        // TODO: магические числа
             var diff1 = seatWidth - 350;
             var diff2 = legsWidth - 40;
             var diff3 = legSpacing - 210;
@@ -47,6 +50,7 @@ namespace Stool.Wrapper
             // индекс 2 - X конечное, индекс 3 - Y конечное
             double[,] segments =
             {
+	            // TODO: магические числа
                 { -175-diff1, -145-diff1, -175-diff1, 145+diff1 },
                 { 175+diff1, -145-diff1, 175+diff1, 145+diff1 },
                 { -145-diff1, 175+diff1, 145+diff1, 175+diff1 },
@@ -59,7 +63,8 @@ namespace Stool.Wrapper
             // индекс 5 - X конечное, индекс 6 - Y конечное
             // индекс 7 - направление
             double[,] arcs =
-            {
+			{
+				// TODO: магические числа
                 { -145-diff1, 145+diff1, 30, -175-diff1, 145+diff1, -145-diff1, 175+diff1, -1 },
                 { 145+diff1, 145+diff1, 30, 145+diff1, 175+diff1, 175+diff1, 145+diff1, -1 },
                 { 145+diff1, -145-diff1, 30, 145+diff1, -175-diff1, 175+diff1, -145-diff1, 1 },

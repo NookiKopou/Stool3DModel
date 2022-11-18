@@ -3,6 +3,7 @@
 // Project-level suppressions either have no target or are given
 // a specific target and scoped to a namespace, type, member, etc.
 
+// TODO: Зачем?
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Style", "IDE0059:Ненужное присваивание значения", Justification = "<Ожидание>", Scope = "member", Target = "~M:Stool.Wrapper.StoolBuilder.BuildLeg")]
