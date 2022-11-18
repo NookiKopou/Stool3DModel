@@ -39,7 +39,8 @@
       <HintPath>KompasLibrary\Kompas6Constants3D.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="StoolModel">
+    <Reference Include="StoolModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\StoolModel\bin\Debug\StoolModel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -59,12 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Stool\StoolView.csproj">
-      <Project>{b7e9f60c-d30a-445f-9173-4c727c20ea3a}</Project>
-      <Name>StoolView</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

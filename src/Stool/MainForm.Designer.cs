@@ -39,18 +39,15 @@ namespace Stool
             this.LegSpacingTextBox = new System.Windows.Forms.TextBox();
             this.LegsHeightTextBox = new System.Windows.Forms.TextBox();
             this.LegsWidthTextBox = new System.Windows.Forms.TextBox();
-            this.SeatHeighTextBox = new System.Windows.Forms.TextBox();
+            this.SeatHeightTextBox = new System.Windows.Forms.TextBox();
             this.LegsHeightLabel = new System.Windows.Forms.Label();
             this.LegsWidthLabel = new System.Windows.Forms.Label();
             this.SeatHeightLabel = new System.Windows.Forms.Label();
             this.LegSpacingLabel = new System.Windows.Forms.Label();
             this.SeatWidthTextBox = new System.Windows.Forms.TextBox();
             this.SeatWidthLabel = new System.Windows.Forms.Label();
-            this.ErrorsGroupBox = new System.Windows.Forms.GroupBox();
-            this.ErrorsLabel = new System.Windows.Forms.Label();
             this.BuildButton = new System.Windows.Forms.Button();
             this.ParametersGroupBox.SuspendLayout();
-            this.ErrorsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // ParametersGroupBox
@@ -65,7 +62,7 @@ namespace Stool
             this.ParametersGroupBox.Controls.Add(this.LegSpacingTextBox);
             this.ParametersGroupBox.Controls.Add(this.LegsHeightTextBox);
             this.ParametersGroupBox.Controls.Add(this.LegsWidthTextBox);
-            this.ParametersGroupBox.Controls.Add(this.SeatHeighTextBox);
+            this.ParametersGroupBox.Controls.Add(this.SeatHeightTextBox);
             this.ParametersGroupBox.Controls.Add(this.LegsHeightLabel);
             this.ParametersGroupBox.Controls.Add(this.LegsWidthLabel);
             this.ParametersGroupBox.Controls.Add(this.SeatHeightLabel);
@@ -74,7 +71,7 @@ namespace Stool
             this.ParametersGroupBox.Controls.Add(this.SeatWidthLabel);
             this.ParametersGroupBox.Location = new System.Drawing.Point(12, 12);
             this.ParametersGroupBox.Name = "ParametersGroupBox";
-            this.ParametersGroupBox.Size = new System.Drawing.Size(363, 151);
+            this.ParametersGroupBox.Size = new System.Drawing.Size(349, 151);
             this.ParametersGroupBox.TabIndex = 0;
             this.ParametersGroupBox.TabStop = false;
             this.ParametersGroupBox.Text = "Параметры";
@@ -105,7 +102,7 @@ namespace Stool
             this.LegsWidthMMLabel.Name = "LegsWidthMMLabel";
             this.LegsWidthMMLabel.Size = new System.Drawing.Size(61, 13);
             this.LegsWidthMMLabel.TabIndex = 12;
-            this.LegsWidthMMLabel.Text = "20 – 60 мм";
+            this.LegsWidthMMLabel.Text = "30 – 50 мм";
             // 
             // SeatHeightMMLabel
             // 
@@ -131,7 +128,7 @@ namespace Stool
             this.LegSpacingTextBox.Name = "LegSpacingTextBox";
             this.LegSpacingTextBox.Size = new System.Drawing.Size(100, 20);
             this.LegSpacingTextBox.TabIndex = 9;
-            this.LegSpacingTextBox.TextChanged += new System.EventHandler(this.LegSpacingTextBox_TextChanged);
+            this.LegSpacingTextBox.Text = "210";
             // 
             // LegsHeightTextBox
             // 
@@ -139,7 +136,7 @@ namespace Stool
             this.LegsHeightTextBox.Name = "LegsHeightTextBox";
             this.LegsHeightTextBox.Size = new System.Drawing.Size(100, 20);
             this.LegsHeightTextBox.TabIndex = 8;
-            this.LegsHeightTextBox.TextChanged += new System.EventHandler(this.LegsHeightTextBox_TextChanged);
+            this.LegsHeightTextBox.Text = "400";
             // 
             // LegsWidthTextBox
             // 
@@ -147,15 +144,15 @@ namespace Stool
             this.LegsWidthTextBox.Name = "LegsWidthTextBox";
             this.LegsWidthTextBox.Size = new System.Drawing.Size(100, 20);
             this.LegsWidthTextBox.TabIndex = 7;
-            this.LegsWidthTextBox.TextChanged += new System.EventHandler(this.LegsWidthTextBox_TextChanged);
+            this.LegsWidthTextBox.Text = "40";
             // 
-            // SeatHeighTextBox
+            // SeatHeightTextBox
             // 
-            this.SeatHeighTextBox.Location = new System.Drawing.Point(168, 45);
-            this.SeatHeighTextBox.Name = "SeatHeighTextBox";
-            this.SeatHeighTextBox.Size = new System.Drawing.Size(100, 20);
-            this.SeatHeighTextBox.TabIndex = 6;
-            this.SeatHeighTextBox.TextChanged += new System.EventHandler(this.SeatHeighTextBox_TextChanged);
+            this.SeatHeightTextBox.Location = new System.Drawing.Point(168, 45);
+            this.SeatHeightTextBox.Name = "SeatHeightTextBox";
+            this.SeatHeightTextBox.Size = new System.Drawing.Size(100, 20);
+            this.SeatHeightTextBox.TabIndex = 6;
+            this.SeatHeightTextBox.Text = "20";
             // 
             // LegsHeightLabel
             // 
@@ -199,7 +196,7 @@ namespace Stool
             this.SeatWidthTextBox.Name = "SeatWidthTextBox";
             this.SeatWidthTextBox.Size = new System.Drawing.Size(100, 20);
             this.SeatWidthTextBox.TabIndex = 1;
-            this.SeatWidthTextBox.TextChanged += new System.EventHandler(this.SeatWidthTextBox_TextChanged);
+            this.SeatWidthTextBox.Text = "350";
             // 
             // SeatWidthLabel
             // 
@@ -210,58 +207,33 @@ namespace Stool
             this.SeatWidthLabel.TabIndex = 0;
             this.SeatWidthLabel.Text = "Ширина сиденья:";
             // 
-            // ErrorsGroupBox
-            // 
-            this.ErrorsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ErrorsGroupBox.Controls.Add(this.ErrorsLabel);
-            this.ErrorsGroupBox.Location = new System.Drawing.Point(13, 170);
-            this.ErrorsGroupBox.Name = "ErrorsGroupBox";
-            this.ErrorsGroupBox.Size = new System.Drawing.Size(362, 95);
-            this.ErrorsGroupBox.TabIndex = 1;
-            this.ErrorsGroupBox.TabStop = false;
-            this.ErrorsGroupBox.Text = "Ошибки";
-            // 
-            // ErrorsLabel
-            // 
-            this.ErrorsLabel.AutoSize = true;
-            this.ErrorsLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.ErrorsLabel.Location = new System.Drawing.Point(8, 20);
-            this.ErrorsLabel.Name = "ErrorsLabel";
-            this.ErrorsLabel.Size = new System.Drawing.Size(104, 13);
-            this.ErrorsLabel.TabIndex = 0;
-            this.ErrorsLabel.Text = "Параметры верны!";
-            // 
             // BuildButton
             // 
             this.BuildButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BuildButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.BuildButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BuildButton.Location = new System.Drawing.Point(295, 272);
+            this.BuildButton.Location = new System.Drawing.Point(283, 176);
             this.BuildButton.Name = "BuildButton";
-            this.BuildButton.Size = new System.Drawing.Size(75, 23);
+            this.BuildButton.Size = new System.Drawing.Size(78, 23);
             this.BuildButton.TabIndex = 2;
             this.BuildButton.Text = "Построить";
             this.BuildButton.UseVisualStyleBackColor = false;
             this.BuildButton.Click += new System.EventHandler(this.BuildButton_Click);
             // 
-            // StoolForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(384, 304);
+            this.ClientSize = new System.Drawing.Size(370, 211);
             this.Controls.Add(this.BuildButton);
-            this.Controls.Add(this.ErrorsGroupBox);
             this.Controls.Add(this.ParametersGroupBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "StoolForm";
+            this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Табурет";
             this.ParametersGroupBox.ResumeLayout(false);
             this.ParametersGroupBox.PerformLayout();
-            this.ErrorsGroupBox.ResumeLayout(false);
-            this.ErrorsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -278,14 +250,12 @@ namespace Stool
         private System.Windows.Forms.TextBox LegSpacingTextBox;
         private System.Windows.Forms.TextBox LegsHeightTextBox;
         private System.Windows.Forms.TextBox LegsWidthTextBox;
-        private System.Windows.Forms.TextBox SeatHeighTextBox;
+        private System.Windows.Forms.TextBox SeatHeightTextBox;
         private System.Windows.Forms.Label LegsHeightLabel;
         private System.Windows.Forms.Label LegsWidthLabel;
         private System.Windows.Forms.Label SeatHeightLabel;
         private System.Windows.Forms.Label LegSpacingLabel;
         private System.Windows.Forms.TextBox SeatWidthTextBox;
-        private System.Windows.Forms.GroupBox ErrorsGroupBox;
-        private System.Windows.Forms.Label ErrorsLabel;
         private System.Windows.Forms.Button BuildButton;
     }
 }
