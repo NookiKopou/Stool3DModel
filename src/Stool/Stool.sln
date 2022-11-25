@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32510.428
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoolView", "StoolView.csproj", "{B7E9F60C-D30A-445F-9173-4C727C20EA3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoolView", "Stool.View\StoolView.csproj", "{B7E9F60C-D30A-445F-9173-4C727C20EA3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stool.Wrapper", "..\Stool.Wrapper\Stool.Wrapper.csproj", "{C4364DA9-A4B6-4D26-B4CD-24EB0CDD2E17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stool.Wrapper", "Stool.Wrapper\Stool.Wrapper.csproj", "{C4364DA9-A4B6-4D26-B4CD-24EB0CDD2E17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoolModel", "..\StoolModel\StoolModel.csproj", "{8EB4B8DE-966C-4639-A1A3-DF824E5BA4C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoolModel", "Stool.Model\StoolModel.csproj", "{8EB4B8DE-966C-4639-A1A3-DF824E5BA4C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
