@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace StoolModel
 {
-    // TODO: XML
     /// <summary>
     /// Класс табурета с выбранными параметрами
     /// </summary>
     public class StoolParameters: IEquatable<StoolParameters>
-    {
-        private IEquatable<StoolParameters> _equatableImplementation;
+	{
+		// TODO: Не используется, XML
+		private IEquatable<StoolParameters> _equatableImplementation;
 
         /// <summary>
         /// Словарь "тип параметра - параметр"
@@ -19,8 +19,6 @@ namespace StoolModel
         /// <summary>
         /// Словарь ошибок
         /// </summary>
-        /// // TODO: Нужен ли set? Должен ли быть публичным? Публичным должен быть, 
-        /// так как в BuildButton_Click в мейн форме к нему идет обращение. Ну а сеттер, видимо, не нужОн
         public Dictionary<ParameterType, string> Errors { get; }
 
         /// <summary>
@@ -63,7 +61,6 @@ namespace StoolModel
         /// <param name="legsHeight">Ширина ножек</param>
         /// <param name="legSpacing">Расстояние между ножками</param>
         /// <param name="seatHeight">Высота сиденья</param>
-        // TODO: Не используется. Нужен? Используется!! 91 строка мейн форм
         public void SetParameters(double seatWidth, double seatHeight,
             double legsWidth, double legsHeight, double legSpacing)
         {

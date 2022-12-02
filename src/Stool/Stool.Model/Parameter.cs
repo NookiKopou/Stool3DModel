@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace StoolModel
 {
-    // TODO: XML
     /// <summary>
     /// Класс параметра
     /// </summary>
@@ -39,6 +38,7 @@ namespace StoolModel
         /// </summary>
         private readonly Dictionary<ParameterType, string> _errors;
 
+	    // TODO: Не используется, XML
         private IEquatable<Parameter> _equatableImplementation;
 
         /// <summary>
@@ -92,6 +92,8 @@ namespace StoolModel
             return true;
         }
 
+        // TODO: XML
+        // TODO: тесты
         public bool Equals(Parameter expected)
         {
             return expected != null &&

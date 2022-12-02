@@ -1,8 +1,5 @@
 ﻿using StoolModel;
 
-// TODO: Вынести решение из папки с проектом StoolView Сделала,
-// но при запуске программы все равно приходится делать отладку библиотек :(
-// TODO: Исправить построение проножки СДЕЛАНО (забыла координату изменить просто..)
 namespace Stool.Wrapper
 {
     /// <summary>
@@ -14,8 +11,7 @@ namespace Stool.Wrapper
         /// Связь с Компас-3D
         /// </summary>
         private readonly KompasWrapper _wrapper = new KompasWrapper();
-
-        // TODO: Ссылки ?У меня все ок, ссылка есть на 160 строку мейн форм
+        
         /// <summary>
         /// Построение детали по заданным параметрам
         /// </summary>
@@ -34,8 +30,7 @@ namespace Stool.Wrapper
                 stoolParameters.Parameters[ParameterType.LegsHeight].Value;
             var legSpacing =
                 stoolParameters.Parameters[ParameterType.LegSpacing].Value;
-
-            // TODO: магические числа
+            
             // Переменная, определяющая, насколько изменилась ширина сиденья 
             var seatWidthDiff = seatWidth - 350;
             // Переменная, определяющая, насколько изменилась высота ножек
@@ -54,6 +49,7 @@ namespace Stool.Wrapper
         /// </summary>
         private void BuildSeat(double seatWidthDiff, double seatHeight)
         {
+            // TODO: убрать
             //double leftDownHorizontalPointX = -175 - seatWidthDiff;
             //double leftDownHorizontalPointY = -145 - seatWidthDiff;
 
@@ -84,7 +80,6 @@ namespace Stool.Wrapper
             // индекс 2 - X конечное, индекс 3 - Y конечное
             double[,] segments =
             {
-                // TODO: магические числа
                 { -175-seatWidthDiff, -145-seatWidthDiff, -175-seatWidthDiff, 145+seatWidthDiff },
                 { 175+seatWidthDiff, -145-seatWidthDiff, 175+seatWidthDiff, 145+seatWidthDiff },
                 { -145-seatWidthDiff, 175+seatWidthDiff, 145+seatWidthDiff, 175+seatWidthDiff },
@@ -98,7 +93,6 @@ namespace Stool.Wrapper
             // индекс 7 - направление
             double[,] arcs =
             {
-                // TODO: магические числа
                 { -145-seatWidthDiff, 145+seatWidthDiff, 30, -175-seatWidthDiff, 145+seatWidthDiff, -145-seatWidthDiff, 175+seatWidthDiff, -1 },
                 { 145+seatWidthDiff, 145+seatWidthDiff, 30, 145+seatWidthDiff, 175+seatWidthDiff, 175+seatWidthDiff, 145+seatWidthDiff, -1 },
                 { 145+seatWidthDiff, -145-seatWidthDiff, 30, 145+seatWidthDiff, -175-seatWidthDiff, 175+seatWidthDiff, -145-seatWidthDiff, 1 },

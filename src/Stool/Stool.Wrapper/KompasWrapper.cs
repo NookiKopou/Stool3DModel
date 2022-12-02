@@ -5,7 +5,6 @@ using Kompas6Constants3D;
 
 namespace Stool.Wrapper
 {
-    // TODO: XML  Выполнено
     /// <summary>
     /// Класс для запуска библиотеки в Компас-3D
     /// </summary>

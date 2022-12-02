@@ -152,7 +152,6 @@ namespace Stool
                     var message = string.Empty;
                     foreach (var keyValue in _stoolParameters.Errors)
                     {
-                        // TODO: Можно сделать в одну строку $
                         message += $"{keyValue.Value}\n\n";
                     }
                     
