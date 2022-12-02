@@ -1,7 +1,8 @@
 ﻿using StoolModel;
 
-// TODO: Вынести решение из папки с проектом StoolView Сделала, но ничего не поменялось с обновлением библиотек :(
-// TODO: Исправить построение проножка
+// TODO: Вынести решение из папки с проектом StoolView Сделала,
+// но при запуске программы все равно приходится делать отладку библиотек :(
+// TODO: Исправить построение проножки СДЕЛАНО (забыла координату изменить просто..)
 namespace Stool.Wrapper
 {
     /// <summary>
@@ -53,10 +54,37 @@ namespace Stool.Wrapper
         /// </summary>
         private void BuildSeat(double seatWidthDiff, double seatHeight)
         {
+            //double leftDownHorizontalPointX = -175 - seatWidthDiff;
+            //double leftDownHorizontalPointY = -145 - seatWidthDiff;
+
+            //double leftUpHorizontalPointX = -175 - seatWidthDiff;
+            //double leftUpHorizontalPointY = 145 + seatWidthDiff;
+
+            //double leftDownVerticalPointX = -175 - seatWidthDiff;
+            //double leftDownVerticalPointY = -145 - seatWidthDiff;
+
+            //double leftUpVerticalPointX = -175 - seatWidthDiff;
+            //double leftUpVerticalPointY = 145 + seatWidthDiff;
+
+            //double rightDownHorizontalPointX = 175 + seatWidthDiff;
+            //double rightDownHorizontalPointY = -145 - seatWidthDiff;
+
+            //double rightUpHorizontalPointX = 175 + seatWidthDiff;
+            //double rightUpHorizontalPointY = 145 + seatWidthDiff;
+
+            //double rightDownVerticalPointX = 175 + seatWidthDiff;
+            //double rightDownVerticalPointY = -145 - seatWidthDiff;
+
+            //double rightUpVerticalPointX = -175 - seatWidthDiff;
+            //double rightUpVerticalPointY = 145 + seatWidthDiff;
+
+            // Построение основания сиденья
+
             // Массив координат отрезка: индекс 0 - X начальное, индекс 1 - Y начальное,
             // индекс 2 - X конечное, индекс 3 - Y конечное
             double[,] segments =
             {
+                // TODO: магические числа
                 { -175-seatWidthDiff, -145-seatWidthDiff, -175-seatWidthDiff, 145+seatWidthDiff },
                 { 175+seatWidthDiff, -145-seatWidthDiff, 175+seatWidthDiff, 145+seatWidthDiff },
                 { -145-seatWidthDiff, 175+seatWidthDiff, 145+seatWidthDiff, 175+seatWidthDiff },
@@ -70,6 +98,7 @@ namespace Stool.Wrapper
             // индекс 7 - направление
             double[,] arcs =
             {
+                // TODO: магические числа
                 { -145-seatWidthDiff, 145+seatWidthDiff, 30, -175-seatWidthDiff, 145+seatWidthDiff, -145-seatWidthDiff, 175+seatWidthDiff, -1 },
                 { 145+seatWidthDiff, 145+seatWidthDiff, 30, 145+seatWidthDiff, 175+seatWidthDiff, 175+seatWidthDiff, 145+seatWidthDiff, -1 },
                 { 145+seatWidthDiff, -145-seatWidthDiff, 30, 145+seatWidthDiff, -175-seatWidthDiff, 175+seatWidthDiff, -145-seatWidthDiff, 1 },
@@ -93,10 +122,12 @@ namespace Stool.Wrapper
         }
 
         /// <summary>
-        /// Построение ног
+        /// Построение ножек
         /// </summary>
         private void BuildLeg(double legsWidthDiff, double legsHeight, double diff3)
         {
+            // Построение основания ножек
+
             // Массив координат отрезка: индекс 0 - X начальное, индекс 1 - Y начальное,
             // индекс 2 - X конечное, индекс 3 - Y конечное
             double[,] segments =
@@ -112,7 +143,6 @@ namespace Stool.Wrapper
             _wrapper.ExtrudeSketch(sketch, legsHeight, false);
 
             // Создание скругления отрезков
-
             const double radius = 5;
             double[,] edgeCoordinatesArray =
             {
@@ -129,6 +159,8 @@ namespace Stool.Wrapper
         /// </summary>
         private void BuildRung(double legSpacing, double legSpacingDiff)
         {
+            // Построение основания проножки на плоскости ножки
+
             // Координата точки: индекс 0 - X, индекс 1 - Y, индекс 2 - Z.
             var point = new[] { 105 + legSpacingDiff, 125 + legSpacingDiff, -275 };
 
@@ -136,10 +168,10 @@ namespace Stool.Wrapper
             // индекс 2 - X конечное, индекс 3 - Y конечное
             var segments = new double[,]
             {
-                { 190, -110, 210, -110 },
-                { 215, -115, 215, -135 },
-                { 210, -140, 190, -140 },
-                { 185, -115, 185, -135 },
+                { 190, -110 - legSpacingDiff, 210, -110 - legSpacingDiff},
+                { 215, -115 - legSpacingDiff, 215, -135 - legSpacingDiff},
+                { 210, -140 - legSpacingDiff, 190, -140 - legSpacingDiff},
+                { 185, -115 - legSpacingDiff, 185, -135 - legSpacingDiff},
             };
 
             // Массив параметров дуги: индекс 0 - X центра, индекс 1 - Y центра,
@@ -149,15 +181,17 @@ namespace Stool.Wrapper
             // индекс 7 - направление
             var arcs = new double[,]
             {
-                { 190, -135, 5, 185, -135, 190, -140, 1 },
-                { 190, -115, 5, 185, -115, 190, -110, -1 },
-                { 210, -115, 5, 210, -110, 215, -115, -1 },
-                { 210, -135, 5, 210, -140, 215, -135, 1 },
+                { 190, -135 - legSpacingDiff, 5, 185, -135 - legSpacingDiff, 190, -140 - legSpacingDiff, 1 },
+                { 190, -115 - legSpacingDiff, 5, 185, -115 - legSpacingDiff, 190, -110 - legSpacingDiff, -1 },
+                { 210, -115 - legSpacingDiff, 5, 210, -110 - legSpacingDiff, 215, -115 - legSpacingDiff, -1 },
+                { 210, -135 - legSpacingDiff, 5, 210, -140 - legSpacingDiff, 215, -135 - legSpacingDiff, 1 },
             };
 
             // Созданный эскиз
             var sketch = _wrapper.BuildSegmentsWithArcsByPoint(point, segments, arcs, false);
             _wrapper.ExtrudeSketch(sketch, legSpacing, true);
+
+            // Построение основания проножки на плоскости ножки
 
             // Координата точки: индекс 0 - X, индекс 1 - Y, индекс 2 - Z
             point = new[] { -105 - legSpacingDiff, 125 + legSpacingDiff, -275 };
@@ -166,10 +200,10 @@ namespace Stool.Wrapper
             // индекс 2 - X конечное, индекс 3 - Y конечное
             segments = new double[,]
             {
-                { -190, 110, -210, 110 },
-                { -215, 115, -215, 135 },
-                { -210, 140, -190, 140 },
-                { -185, 115, -185, 135 },
+                { -190, 110 + legSpacingDiff, -210, 110 + legSpacingDiff },
+                { -215, 115 + legSpacingDiff, -215, 135 + legSpacingDiff },
+                { -210, 140 + legSpacingDiff, -190, 140 + legSpacingDiff },
+                { -185, 115 + legSpacingDiff, -185, 135 + legSpacingDiff },
             };
 
             // Массив параметров дуги: индекс 0 - X центра, индекс 1 - Y центра,
@@ -179,15 +213,17 @@ namespace Stool.Wrapper
             // индекс 7 - направление
             arcs = new double[,]
             {
-                { -190, 135, 5, -185, 135, -190, 140, 1 },
-                { -190, 115, 5, -185, 115, -190, 110, -1 },
-                { -210, 115, 5, -210, 110, -215, 115, -1 },
-                { -210, 135, 5, -210, 140, -215, 135, 1 },
+                { -190, 135 + legSpacingDiff, 5, -185, 135 + legSpacingDiff, -190, 140 + legSpacingDiff, 1 },
+                { -190, 115 + legSpacingDiff, 5, -185, 115 + legSpacingDiff, -190, 110 + legSpacingDiff, -1 },
+                { -210, 115 + legSpacingDiff, 5, -210, 110 + legSpacingDiff, -215, 115 + legSpacingDiff, -1 },
+                { -210, 135 + legSpacingDiff, 5, -210, 140 + legSpacingDiff, -215, 135 + legSpacingDiff, 1 },
             };
 
             // Созданный эскиз
             sketch = _wrapper.BuildSegmentsWithArcsByPoint(point, segments, arcs, false);
             _wrapper.ExtrudeSketch(sketch, legSpacing, true);
+
+            // Построение основания проножки на плоскости ножки
 
             // Координата точки: индекс 0 - X, индекс 1 - Y, индекс 2 - Z
             point = new[] { -125 - legSpacingDiff, -105 - legSpacingDiff, -225 };
@@ -196,10 +232,10 @@ namespace Stool.Wrapper
             // индекс 2 - X конечное, индекс 3 - Y конечное
             segments = new double[,]
             {
-                { -115, 185, -135, 185 },
-                { -140, 190, -140, 210 },
-                { -135, 215, -115, 215 },
-                { -110, 190, -110, 210 },
+                { -115 - legSpacingDiff, 185, -135 - legSpacingDiff, 185 },
+                { -140 - legSpacingDiff, 190, -140 - legSpacingDiff, 210 },
+                { -135 - legSpacingDiff, 215, -115 - legSpacingDiff, 215 },
+                { -110 - legSpacingDiff, 190, -110 - legSpacingDiff, 210 },
             };
 
             // Массив параметров дуги: индекс 0 - X центра, индекс 1 - Y центра,
@@ -209,15 +245,17 @@ namespace Stool.Wrapper
             // индекс 7 - направление
             arcs = new double[,]
             {
-                { -115, 210, 5, -110, 210, -115, 215, 1 },
-                { -115, 190, 5, -110, 190, -115, 185, -1 },
-                { -135, 190, 5, -135, 185, -140, 190, -1 },
-                { -135, 210, 5, -135, 215, -140, 210, 1 },
+                { -115 - legSpacingDiff, 210, 5, -110 - legSpacingDiff, 210, -115 - legSpacingDiff, 215, 1 },
+                { -115 - legSpacingDiff, 190, 5, -110 - legSpacingDiff, 190, -115 - legSpacingDiff, 185, -1 },
+                { -135 - legSpacingDiff, 190, 5, -135 - legSpacingDiff, 185, -140 - legSpacingDiff, 190, -1 },
+                { -135 - legSpacingDiff, 210, 5, -135 - legSpacingDiff, 215, -140 - legSpacingDiff, 210, 1 },
             };
 
             // Созданный эскиз
             sketch = _wrapper.BuildSegmentsWithArcsByPoint(point, segments, arcs, false);
             _wrapper.ExtrudeSketch(sketch, legSpacing, true);
+
+            // Построение основания проножки на плоскости ножки
 
             // Координата точки: индекс 0 - X, индекс 1 - Y, индекс 2 - Z
             point = new[] { 125 + legSpacingDiff, 105 + legSpacingDiff, -225 };
@@ -226,10 +264,10 @@ namespace Stool.Wrapper
             // индекс 2 - X конечное, индекс 3 - Y конечное
             segments = new double[,]
             {
-                { 115, -185, 135, -185 },
-                { 140, -190, 140, -210 },
-                { 135, -215, 115, -215 },
-                { 110, -190, 110, -210 },
+                { 115 + legSpacingDiff, -185, 135 + legSpacingDiff, -185 },
+                { 140 + legSpacingDiff, -190, 140 + legSpacingDiff, -210 },
+                { 135 + legSpacingDiff, -215, 115 + legSpacingDiff, -215 },
+                { 110 + legSpacingDiff, -190, 110 + legSpacingDiff, -210 },
             };
 
             // Массив параметров дуги: индекс 0 - X центра, индекс 1 - Y центра,
@@ -239,10 +277,10 @@ namespace Stool.Wrapper
             // индекс 7 - направление
             arcs = new double[,]
             {
-                { 115, -210, 5, 110, -210, 115, -215, 1 },
-                { 115, -190, 5, 110, -190, 115, -185, -1 },
-                { 135, -190, 5, 135, -185, 140, -190, -1 },
-                { 135, -210, 5, 135, -215, 140, -210, 1 },
+                { 115 + legSpacingDiff, -210, 5, 110 + legSpacingDiff, -210, 115 + legSpacingDiff, -215, 1 },
+                { 115 + legSpacingDiff, -190, 5, 110 + legSpacingDiff, -190, 115 + legSpacingDiff, -185, -1 },
+                { 135 + legSpacingDiff, -190, 5, 135 + legSpacingDiff, -185, 140 + legSpacingDiff, -190, -1 },
+                { 135 + legSpacingDiff, -210, 5, 135 + legSpacingDiff, -215, 140 + legSpacingDiff, -210, 1 },
             };
 
             // Созданный эскиз
@@ -255,6 +293,8 @@ namespace Stool.Wrapper
         /// </summary>
         private void BuildSideBar(double legSpacingDiff)
         {
+            // Построение боковой части царги
+
             // Координата точки: индекс 0 - X, индекс 1 - Y, индекс 2 - Z
             double[] point = { 0, 0, 0 };
 

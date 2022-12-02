@@ -8,12 +8,15 @@ using System.Linq;
 
 namespace Stool
 {
-    public partial class MainForm : Form
+    /// <summary>
+    /// Класс основной формы
+    /// </summary>
+    public partial class MainForm : Form 
     {
         /// <summary>
         /// Объект StoolParameters
         /// </summary>
-        private StoolParameters _stoolParameters = new StoolParameters(350, 20, 40, 400, 210);
+        private readonly StoolParameters _stoolParameters = new StoolParameters(350, 20, 40, 400, 210);
 
         /// <summary>
         /// Словарь для введенных параметров
@@ -60,11 +63,11 @@ namespace Stool
 
             // Событие при изменении текста
 
-            SeatWidthTextBox.TextChanged += СheckErrors;
-            SeatHeightTextBox.TextChanged += СheckErrors;
-            LegsWidthTextBox.TextChanged += СheckErrors;
-            LegsHeightTextBox.TextChanged += СheckErrors;
-            LegSpacingTextBox.TextChanged += СheckErrors;
+            SeatWidthTextBox.TextChanged += CheckErrors;
+            SeatHeightTextBox.TextChanged += CheckErrors;
+            LegsWidthTextBox.TextChanged += CheckErrors;
+            LegsHeightTextBox.TextChanged += CheckErrors;
+            LegSpacingTextBox.TextChanged += CheckErrors;
         }
 
         /// <summary>
@@ -72,7 +75,7 @@ namespace Stool
         /// </summary>
         /// <param name="sender">TextBox</param>
         /// <param name="e">Изменение текста в TextBox</param>
-        private void СheckErrors(object sender, EventArgs e)
+        private void CheckErrors(object sender, EventArgs e)
         {
             foreach (var keyValue in _parameterToTextBox)
             {
@@ -149,7 +152,8 @@ namespace Stool
                     var message = string.Empty;
                     foreach (var keyValue in _stoolParameters.Errors)
                     {
-                        message += "• " + keyValue.Value + "\n\n";
+                        // TODO: Можно сделать в одну строку $
+                        message += $"{keyValue.Value}\n\n";
                     }
                     
                     MessageBox.Show(message, @"Данные введены неверно!",
