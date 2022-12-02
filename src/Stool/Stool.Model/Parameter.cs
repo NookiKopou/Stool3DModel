@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace StoolModel
 {
@@ -6,7 +7,7 @@ namespace StoolModel
     /// <summary>
     /// Класс параметра
     /// </summary>
-    public class Parameter
+    public class Parameter: IEquatable<Parameter>
     {
         /// <summary>
         /// Минимальная величина
@@ -37,6 +38,8 @@ namespace StoolModel
         /// Словарь ошибок для значений параметров
         /// </summary>
         private readonly Dictionary<ParameterType, string> _errors;
+
+        private IEquatable<Parameter> _equatableImplementation;
 
         /// <summary>
         /// Возвращает и устанавливает значение
@@ -87,6 +90,17 @@ namespace StoolModel
                 return false;
             }
             return true;
+        }
+
+        public bool Equals(Parameter expected)
+        {
+            return expected != null &&
+                   Value.Equals(expected.Value) &&
+                   _errors.Equals(expected._errors) &&
+                   _minValue.Equals(expected._minValue) &&
+                   _maxValue.Equals(expected._maxValue) &&
+                   _parameterType.Equals(expected._parameterType) &&
+                   _valueErrorMessage.Equals(expected._valueErrorMessage);
         }
     }
 }

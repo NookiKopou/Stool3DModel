@@ -7,8 +7,10 @@ namespace StoolModel
     /// <summary>
     /// Класс табурета с выбранными параметрами
     /// </summary>
-    public class StoolParameters
+    public class StoolParameters: IEquatable<StoolParameters>
     {
+        private IEquatable<StoolParameters> _equatableImplementation;
+
         /// <summary>
         /// Словарь "тип параметра - параметр"
         /// </summary>
@@ -100,6 +102,13 @@ namespace StoolModel
             {
                 Parameters[parameterType].Value = Math.Abs(value);
             }
+        }
+
+        public bool Equals(StoolParameters other)
+        {
+            return other != null &&
+                   Errors.Equals(other.Errors) &&
+                   Parameters.Equals(other.Parameters);
         }
     }
 }
