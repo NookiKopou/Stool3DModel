@@ -16,7 +16,7 @@ namespace Stool
         /// <summary>
         /// Объект StoolParameters
         /// </summary>
-        private readonly StoolParameters _stoolParameters = new StoolParameters(350, 20, 40, 400, 210);
+        private readonly StoolParameters _stoolParameters = new StoolParameters(350, 20, 40, 400, 210, 55);
 
         /// <summary>
         /// Словарь для введенных параметров
@@ -50,7 +50,8 @@ namespace Stool
                 { ParameterType.SeatHeight, SeatHeightTextBox },
                 { ParameterType.LegsWidth, LegsWidthTextBox },
                 { ParameterType.LegsHeight, LegsHeightTextBox },
-                { ParameterType.LegSpacing, LegSpacingTextBox }
+                { ParameterType.LegSpacing, LegSpacingTextBox },
+                { ParameterType.SideBarHeight, SideBarHeightTextBox }
             };
 
             // Событие при вводе символов в форму
@@ -60,6 +61,7 @@ namespace Stool
             LegsWidthTextBox.KeyPress += CheckBannedCharacters;
             LegsHeightTextBox.KeyPress += CheckBannedCharacters;
             LegSpacingTextBox.KeyPress += CheckBannedCharacters;
+            SideBarHeightTextBox.KeyPress += CheckBannedCharacters;
 
             // Событие при изменении текста
 
@@ -68,6 +70,7 @@ namespace Stool
             LegsWidthTextBox.TextChanged += CheckErrors;
             LegsHeightTextBox.TextChanged += CheckErrors;
             LegSpacingTextBox.TextChanged += CheckErrors;
+            SideBarHeightTextBox.TextChanged += CheckErrors;
         }
 
         /// <summary>
@@ -88,8 +91,9 @@ namespace Stool
                 var legsWidth = double.Parse(LegsWidthTextBox.Text);
                 var legsHeight = double.Parse(LegsHeightTextBox.Text);
                 var legSpacing = double.Parse(LegSpacingTextBox.Text);
+                var sideBarHeight = double.Parse(SideBarHeightTextBox.Text);
                 _stoolParameters.SetParameters(seatWidth, seatHeight, legsWidth, 
-                    legsHeight, legSpacing);
+                    legsHeight, legSpacing, sideBarHeight);
 
                 foreach (var keyValue in _stoolParameters.Errors)
                 {
@@ -106,7 +110,7 @@ namespace Stool
         }
 
         /// <summary>
-        /// Поиск пустых TextBox
+        /// Поиск пустых полей
         /// </summary>
         /// <returns>Возвращает true, если нет пустых ячеек, иначе - false</returns>
         private bool CheckEmptyTextBox()
@@ -169,6 +173,11 @@ namespace Stool
                     @"Невозможно построить деталь! Проверьте введенные данные.",
                     @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ParametersGroupBox_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -48,5 +48,17 @@ namespace Stool.UnitTests
             var actual = parameter.Value;
             Assert.AreEqual(expected, actual);
         }
+
+        /// <summary>
+        /// Позитивный тест метода Equals
+        /// </summary>
+        [Test(Description = "Позитивный тест метода Equals")]
+        public void TestEquals_CorrectValue()
+        {
+            var expected = new Parameter(0, 5, 10, ParameterType.SeatWidth,
+                new Dictionary<ParameterType, string>(), "string.Empty");
+            var actual = expected;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

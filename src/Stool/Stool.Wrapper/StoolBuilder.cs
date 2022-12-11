@@ -30,18 +30,22 @@ namespace Stool.Wrapper
                 stoolParameters.Parameters[ParameterType.LegsHeight].Value;
             var legSpacing =
                 stoolParameters.Parameters[ParameterType.LegSpacing].Value;
-            
+            var sideBarHeight =
+                stoolParameters.Parameters[ParameterType.SideBarHeight].Value;
+
             // Переменная, определяющая, насколько изменилась ширина сиденья 
             var seatWidthDiff = seatWidth - 350;
             // Переменная, определяющая, насколько изменилась высота ножек
             var legsWidthDiff = legsWidth - 40;
             // Переменная, определяющая, насколько изменилось расстояние между ножками 
             var legSpacingDiff = legSpacing - 210;
+            // Переменная, определяющая, насколько изменилось расстояние между ножками 
+            var sideBarHeightDiff = sideBarHeight - 55;
 
             BuildSeat(seatWidthDiff / 2, seatHeight);
             BuildLeg(legsWidthDiff, legsHeight, legSpacingDiff/2);
             BuildRung(legSpacing, legSpacingDiff/2);
-            BuildSideBar(legSpacingDiff/2);
+            BuildSideBar(legSpacingDiff/2, sideBarHeight, sideBarHeightDiff);
         }
 
         /// <summary>
@@ -49,31 +53,6 @@ namespace Stool.Wrapper
         /// </summary>
         private void BuildSeat(double seatWidthDiff, double seatHeight)
         {
-            // TODO: убрать
-            //double leftDownHorizontalPointX = -175 - seatWidthDiff;
-            //double leftDownHorizontalPointY = -145 - seatWidthDiff;
-
-            //double leftUpHorizontalPointX = -175 - seatWidthDiff;
-            //double leftUpHorizontalPointY = 145 + seatWidthDiff;
-
-            //double leftDownVerticalPointX = -175 - seatWidthDiff;
-            //double leftDownVerticalPointY = -145 - seatWidthDiff;
-
-            //double leftUpVerticalPointX = -175 - seatWidthDiff;
-            //double leftUpVerticalPointY = 145 + seatWidthDiff;
-
-            //double rightDownHorizontalPointX = 175 + seatWidthDiff;
-            //double rightDownHorizontalPointY = -145 - seatWidthDiff;
-
-            //double rightUpHorizontalPointX = 175 + seatWidthDiff;
-            //double rightUpHorizontalPointY = 145 + seatWidthDiff;
-
-            //double rightDownVerticalPointX = 175 + seatWidthDiff;
-            //double rightDownVerticalPointY = -145 - seatWidthDiff;
-
-            //double rightUpVerticalPointX = -175 - seatWidthDiff;
-            //double rightUpVerticalPointY = 145 + seatWidthDiff;
-
             // Построение основания сиденья
 
             // Массив координат отрезка: индекс 0 - X начальное, индекс 1 - Y начальное,
@@ -160,7 +139,7 @@ namespace Stool.Wrapper
 
             // Массив координат отрезка: индекс 0 - X начальное, индекс 1 - Y начальное,
             // индекс 2 - X конечное, индекс 3 - Y конечное
-            var segments = new double[,]
+            var segments = new[,]
             {
                 { 190, -110 - legSpacingDiff, 210, -110 - legSpacingDiff},
                 { 215, -115 - legSpacingDiff, 215, -135 - legSpacingDiff},
@@ -173,7 +152,7 @@ namespace Stool.Wrapper
             // индекс 3 - X начальное, индекс 4 - Y начальное
             // индекс 5 - X конечное, индекс 6 - Y конечное
             // индекс 7 - направление
-            var arcs = new double[,]
+            var arcs = new[,]
             {
                 { 190, -135 - legSpacingDiff, 5, 185, -135 - legSpacingDiff, 190, -140 - legSpacingDiff, 1 },
                 { 190, -115 - legSpacingDiff, 5, 185, -115 - legSpacingDiff, 190, -110 - legSpacingDiff, -1 },
@@ -192,7 +171,7 @@ namespace Stool.Wrapper
 
             // Массив координат отрезка: индекс 0 - X начальное, индекс 1 - Y начальное,
             // индекс 2 - X конечное, индекс 3 - Y конечное
-            segments = new double[,]
+            segments = new[,]
             {
                 { -190, 110 + legSpacingDiff, -210, 110 + legSpacingDiff },
                 { -215, 115 + legSpacingDiff, -215, 135 + legSpacingDiff },
@@ -205,7 +184,7 @@ namespace Stool.Wrapper
             // индекс 3 - X начальное, индекс 4 - Y начальное
             // индекс 5 - X конечное, индекс 6 - Y конечное
             // индекс 7 - направление
-            arcs = new double[,]
+            arcs = new[,]
             {
                 { -190, 135 + legSpacingDiff, 5, -185, 135 + legSpacingDiff, -190, 140 + legSpacingDiff, 1 },
                 { -190, 115 + legSpacingDiff, 5, -185, 115 + legSpacingDiff, -190, 110 + legSpacingDiff, -1 },
@@ -224,7 +203,7 @@ namespace Stool.Wrapper
 
             // Массив координат отрезка: индекс 0 - X начальное, индекс 1 - Y начальное,
             // индекс 2 - X конечное, индекс 3 - Y конечное
-            segments = new double[,]
+            segments = new[,]
             {
                 { -115 - legSpacingDiff, 185, -135 - legSpacingDiff, 185 },
                 { -140 - legSpacingDiff, 190, -140 - legSpacingDiff, 210 },
@@ -237,7 +216,7 @@ namespace Stool.Wrapper
             // индекс 3 - X начальное, индекс 4 - Y начальное
             // индекс 5 - X конечное, индекс 6 - Y конечное
             // индекс 7 - направление
-            arcs = new double[,]
+            arcs = new[,]
             {
                 { -115 - legSpacingDiff, 210, 5, -110 - legSpacingDiff, 210, -115 - legSpacingDiff, 215, 1 },
                 { -115 - legSpacingDiff, 190, 5, -110 - legSpacingDiff, 190, -115 - legSpacingDiff, 185, -1 },
@@ -256,7 +235,7 @@ namespace Stool.Wrapper
 
             // Массив координат отрезка: индекс 0 - X начальное, индекс 1 - Y начальное,
             // индекс 2 - X конечное, индекс 3 - Y конечное
-            segments = new double[,]
+            segments = new[,]
             {
                 { 115 + legSpacingDiff, -185, 135 + legSpacingDiff, -185 },
                 { 140 + legSpacingDiff, -190, 140 + legSpacingDiff, -210 },
@@ -269,7 +248,7 @@ namespace Stool.Wrapper
             // индекс 3 - X начальное, индекс 4 - Y начальное
             // индекс 5 - X конечное, индекс 6 - Y конечное
             // индекс 7 - направление
-            arcs = new double[,]
+            arcs = new[,]
             {
                 { 115 + legSpacingDiff, -210, 5, 110 + legSpacingDiff, -210, 115 + legSpacingDiff, -215, 1 },
                 { 115 + legSpacingDiff, -190, 5, 110 + legSpacingDiff, -190, 115 + legSpacingDiff, -185, -1 },
@@ -285,7 +264,8 @@ namespace Stool.Wrapper
         /// <summary>
         /// Построение царги
         /// </summary>
-        private void BuildSideBar(double legSpacingDiff)
+        private void BuildSideBar(double legSpacingDiff, double sideBarHeight,
+            double sideBarHeightDiff)
         {
             // Построение боковой части царги
 
@@ -316,16 +296,16 @@ namespace Stool.Wrapper
 
             // Созданный эскиз
             var sketch = _wrapper.BuildSetSegmentsByPoint(point, segments, false);
-            _wrapper.ExtrudeSketch(sketch, 55, true);
+            _wrapper.ExtrudeSketch(sketch, sideBarHeight, true);
 
             // Создание скругления отрезков
             const double radius = 5;
             double[,] filletEdgeCoordinates =
             {
-                { -110-legSpacingDiff, 0-legSpacingDiff, -55 },
-                { -140-legSpacingDiff, 0-legSpacingDiff, -55 },
-                { 0-legSpacingDiff, -140-legSpacingDiff, -55 },
-                { 0-legSpacingDiff , -110-legSpacingDiff, -55 }
+                { -110-legSpacingDiff, 0-legSpacingDiff, -55 - sideBarHeightDiff },
+                { -140-legSpacingDiff, 0-legSpacingDiff, -55 - sideBarHeightDiff},
+                { 0-legSpacingDiff, -140-legSpacingDiff, -55 - sideBarHeightDiff},
+                { 0-legSpacingDiff , -110-legSpacingDiff, -55 - sideBarHeightDiff}
             };
             _wrapper.CreateFillet(filletEdgeCoordinates, radius, _wrapper.EdgeType);
         }

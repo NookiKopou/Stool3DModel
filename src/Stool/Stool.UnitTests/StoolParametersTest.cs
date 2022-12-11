@@ -13,7 +13,7 @@ namespace Stool.UnitTests
         /// <summary>
         /// Объект класса табурета
         /// </summary>
-        private readonly StoolParameters _stoolParameters = new StoolParameters(350, 20, 40, 400, 210);
+        private readonly StoolParameters _stoolParameters = new StoolParameters(350, 20, 40, 400, 210, 55);
 
         /// <summary>
         /// Позитивный тест геттера Errors
@@ -58,6 +58,11 @@ namespace Stool.UnitTests
                     ParameterType.LegSpacing,
                     new Parameter(140, 210, 280, ParameterType.LegSpacing,
                         _stoolParameters.Errors, "Расстояние между ножками")
+                },
+                { 
+                    ParameterType.SideBarHeight,
+                    new Parameter(20, 55, 90, ParameterType.SideBarHeight,
+                        _stoolParameters.Errors, "Высота царги")
                 }
             };
             var actual = _stoolParameters.Parameters;
@@ -76,8 +81,9 @@ namespace Stool.UnitTests
             const double legsWidth = 40;
             const double legsHeight = 400;
             const double legSpacing = 210;
+            const double sideBarHeight = 55;
             _stoolParameters.SetParameters(seatWidth, seatHeight, legsWidth,
-                legsHeight, legSpacing);
+                legsHeight, legSpacing, sideBarHeight);
             var actual = _stoolParameters.Errors.Count;
             Assert.AreEqual(expected, actual);
         }

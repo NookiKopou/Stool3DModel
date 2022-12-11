@@ -28,6 +28,11 @@
         /// <summary>
         /// Расстояние между ножками
         /// </summary>
-        LegSpacing
+        LegSpacing,
+
+        /// <summary>
+        /// Высота царги
+        /// </summary>
+        SideBarHeight
     }
 }

@@ -6,11 +6,8 @@ namespace StoolModel
     /// <summary>
     /// Класс табурета с выбранными параметрами
     /// </summary>
-    public class StoolParameters: IEquatable<StoolParameters>
+    public class StoolParameters
 	{
-		// TODO: Не используется, XML
-		private IEquatable<StoolParameters> _equatableImplementation;
-
         /// <summary>
         /// Словарь "тип параметра - параметр"
         /// </summary>
@@ -29,8 +26,9 @@ namespace StoolModel
         /// <param name="legsWidth">Ширина ножек</param>
         /// <param name="legsHeight">Длина ножек</param>
         /// <param name="legSpacing">Расстояние между ножками</param>
-        public StoolParameters(double seatWidth, double seatHeight,
-            double legsWidth, double legsHeight, double legSpacing)
+        /// <param name="sideBarHeight">Высота царги</param>
+        public StoolParameters(double seatWidth, double seatHeight, double legsWidth,
+            double legsHeight, double legSpacing, double sideBarHeight)
         {
             Errors = new Dictionary<ParameterType, string>();
             Parameters = new Dictionary<ParameterType, Parameter>()
@@ -49,7 +47,10 @@ namespace StoolModel
                     Errors, "Длина ножек")},
                 { ParameterType.LegSpacing,
                     new Parameter(140, legSpacing, 280, ParameterType.LegSpacing, 
-                    Errors, "Расстояние между ножками")}
+                    Errors, "Расстояние между ножками")},
+                { ParameterType.SideBarHeight,
+                    new Parameter(20, sideBarHeight, 90, ParameterType.SideBarHeight,
+                        Errors, "Высота царги")}
             };
         }
 
@@ -61,8 +62,9 @@ namespace StoolModel
         /// <param name="legsHeight">Ширина ножек</param>
         /// <param name="legSpacing">Расстояние между ножками</param>
         /// <param name="seatHeight">Высота сиденья</param>
-        public void SetParameters(double seatWidth, double seatHeight,
-            double legsWidth, double legsHeight, double legSpacing)
+        /// <param name="sideBarHeight">Высота царги</param>
+        public void SetParameters(double seatWidth, double seatHeight, double legsWidth,
+            double legsHeight, double legSpacing, double sideBarHeight)
         {
             Errors.Clear();
             Parameters[ParameterType.SeatWidth].Value = seatWidth;
@@ -79,6 +81,7 @@ namespace StoolModel
             Parameters[ParameterType.SeatHeight].Value = seatHeight;
             Parameters[ParameterType.LegsWidth].Value = legsWidth;
             Parameters[ParameterType.LegsHeight].Value = legsHeight;
+            Parameters[ParameterType.SideBarHeight].Value = sideBarHeight;
         }
 
         /// <summary>
@@ -99,13 +102,6 @@ namespace StoolModel
             {
                 Parameters[parameterType].Value = Math.Abs(value);
             }
-        }
-
-        public bool Equals(StoolParameters other)
-        {
-            return other != null &&
-                   Errors.Equals(other.Errors) &&
-                   Parameters.Equals(other.Parameters);
         }
     }
 }

@@ -38,11 +38,8 @@ namespace StoolModel
         /// </summary>
         private readonly Dictionary<ParameterType, string> _errors;
 
-	    // TODO: Не используется, XML
-        private IEquatable<Parameter> _equatableImplementation;
-
         /// <summary>
-        /// Возвращает и устанавливает значение
+        /// Возвращает и устанавливает значение параметра
         /// </summary>
         public double Value
         {
@@ -57,7 +54,7 @@ namespace StoolModel
         }
 
         /// <summary>
-        /// /// Создание объекта класса Parameter
+        /// Создание объекта класса Parameter
         /// </summary>
         /// <param name="minValue">Минимальная величина</param>
         /// <param name="value">Введенная величина</param>
@@ -94,6 +91,11 @@ namespace StoolModel
 
         // TODO: XML
         // TODO: тесты
+        /// <summary>
+        /// Проверка на равенство объектов класса
+        /// </summary>
+        /// <param name="expected">Сравниваемый объект</param>
+        /// <returns>Возвращает true, если элементы равны, иначе - false</returns>
         public bool Equals(Parameter expected)
         {
             return expected != null &&

@@ -31,6 +31,9 @@ namespace Stool
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ParametersGroupBox = new System.Windows.Forms.GroupBox();
+            this.SideBarHeightLabelMM = new System.Windows.Forms.Label();
+            this.SideBarHeightTextBox = new System.Windows.Forms.TextBox();
+            this.SideBarHeightLabel = new System.Windows.Forms.Label();
             this.LegSpacingMMLabel = new System.Windows.Forms.Label();
             this.LegsHeightMMLabel = new System.Windows.Forms.Label();
             this.LegsWidthMMLabel = new System.Windows.Forms.Label();
@@ -54,6 +57,9 @@ namespace Stool
             // 
             this.ParametersGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ParametersGroupBox.Controls.Add(this.SideBarHeightLabelMM);
+            this.ParametersGroupBox.Controls.Add(this.SideBarHeightTextBox);
+            this.ParametersGroupBox.Controls.Add(this.SideBarHeightLabel);
             this.ParametersGroupBox.Controls.Add(this.LegSpacingMMLabel);
             this.ParametersGroupBox.Controls.Add(this.LegsHeightMMLabel);
             this.ParametersGroupBox.Controls.Add(this.LegsWidthMMLabel);
@@ -71,16 +77,44 @@ namespace Stool
             this.ParametersGroupBox.Controls.Add(this.SeatWidthLabel);
             this.ParametersGroupBox.Location = new System.Drawing.Point(12, 12);
             this.ParametersGroupBox.Name = "ParametersGroupBox";
-            this.ParametersGroupBox.Size = new System.Drawing.Size(349, 151);
+            this.ParametersGroupBox.Size = new System.Drawing.Size(374, 177);
             this.ParametersGroupBox.TabIndex = 0;
             this.ParametersGroupBox.TabStop = false;
             this.ParametersGroupBox.Text = "Параметры";
+            this.ParametersGroupBox.Enter += new System.EventHandler(this.ParametersGroupBox_Enter);
+            // 
+            // SideBarHeightLabelMM
+            // 
+            this.SideBarHeightLabelMM.AutoSize = true;
+            this.SideBarHeightLabelMM.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.SideBarHeightLabelMM.Location = new System.Drawing.Point(274, 126);
+            this.SideBarHeightLabelMM.Name = "SideBarHeightLabelMM";
+            this.SideBarHeightLabelMM.Size = new System.Drawing.Size(61, 13);
+            this.SideBarHeightLabelMM.TabIndex = 17;
+            this.SideBarHeightLabelMM.Text = "20 – 90 мм";
+            // 
+            // SideBarHeightTextBox
+            // 
+            this.SideBarHeightTextBox.Location = new System.Drawing.Point(168, 123);
+            this.SideBarHeightTextBox.Name = "SideBarHeightTextBox";
+            this.SideBarHeightTextBox.Size = new System.Drawing.Size(100, 20);
+            this.SideBarHeightTextBox.TabIndex = 16;
+            this.SideBarHeightTextBox.Text = "55";
+            // 
+            // SideBarHeightLabel
+            // 
+            this.SideBarHeightLabel.AutoSize = true;
+            this.SideBarHeightLabel.Location = new System.Drawing.Point(6, 126);
+            this.SideBarHeightLabel.Name = "SideBarHeightLabel";
+            this.SideBarHeightLabel.Size = new System.Drawing.Size(80, 13);
+            this.SideBarHeightLabel.TabIndex = 15;
+            this.SideBarHeightLabel.Text = "Высота царги:";
             // 
             // LegSpacingMMLabel
             // 
             this.LegSpacingMMLabel.AutoSize = true;
             this.LegSpacingMMLabel.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.LegSpacingMMLabel.Location = new System.Drawing.Point(274, 126);
+            this.LegSpacingMMLabel.Location = new System.Drawing.Point(274, 151);
             this.LegSpacingMMLabel.Name = "LegSpacingMMLabel";
             this.LegSpacingMMLabel.Size = new System.Drawing.Size(73, 13);
             this.LegSpacingMMLabel.TabIndex = 14;
@@ -124,7 +158,7 @@ namespace Stool
             // 
             // LegSpacingTextBox
             // 
-            this.LegSpacingTextBox.Location = new System.Drawing.Point(168, 123);
+            this.LegSpacingTextBox.Location = new System.Drawing.Point(168, 148);
             this.LegSpacingTextBox.Name = "LegSpacingTextBox";
             this.LegSpacingTextBox.Size = new System.Drawing.Size(100, 20);
             this.LegSpacingTextBox.TabIndex = 9;
@@ -184,7 +218,7 @@ namespace Stool
             // LegSpacingLabel
             // 
             this.LegSpacingLabel.AutoSize = true;
-            this.LegSpacingLabel.Location = new System.Drawing.Point(6, 126);
+            this.LegSpacingLabel.Location = new System.Drawing.Point(6, 151);
             this.LegSpacingLabel.Name = "LegSpacingLabel";
             this.LegSpacingLabel.Size = new System.Drawing.Size(158, 13);
             this.LegSpacingLabel.TabIndex = 2;
@@ -212,7 +246,7 @@ namespace Stool
             this.BuildButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BuildButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.BuildButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BuildButton.Location = new System.Drawing.Point(283, 176);
+            this.BuildButton.Location = new System.Drawing.Point(308, 195);
             this.BuildButton.Name = "BuildButton";
             this.BuildButton.Size = new System.Drawing.Size(78, 23);
             this.BuildButton.TabIndex = 2;
@@ -225,7 +259,7 @@ namespace Stool
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(370, 211);
+            this.ClientSize = new System.Drawing.Size(395, 230);
             this.Controls.Add(this.BuildButton);
             this.Controls.Add(this.ParametersGroupBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -257,6 +291,9 @@ namespace Stool
         private System.Windows.Forms.Label LegSpacingLabel;
         private System.Windows.Forms.TextBox SeatWidthTextBox;
         private System.Windows.Forms.Button BuildButton;
+        private System.Windows.Forms.Label SideBarHeightLabelMM;
+        private System.Windows.Forms.TextBox SideBarHeightTextBox;
+        private System.Windows.Forms.Label SideBarHeightLabel;
     }
 }
 
