@@ -81,7 +81,6 @@ namespace Stool
             this.ParametersGroupBox.TabIndex = 0;
             this.ParametersGroupBox.TabStop = false;
             this.ParametersGroupBox.Text = "Параметры";
-            this.ParametersGroupBox.Enter += new System.EventHandler(this.ParametersGroupBox_Enter);
             // 
             // SideBarHeightLabelMM
             // 

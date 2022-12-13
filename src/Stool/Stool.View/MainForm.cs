@@ -174,10 +174,5 @@ namespace Stool
                     @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void ParametersGroupBox_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

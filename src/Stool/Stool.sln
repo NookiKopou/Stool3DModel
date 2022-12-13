@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stool.Model", "Stool.Model\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stool.UnitTests", "Stool.UnitTests\Stool.UnitTests.csproj", "{251252D5-3116-4036-97CF-7F75B4AD283D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stool.StressTest", "Stool.StressTest\Stool.StressTest.csproj", "{D4CBF314-DBB7-4F4A-8A6D-B180C53E86F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{251252D5-3116-4036-97CF-7F75B4AD283D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{251252D5-3116-4036-97CF-7F75B4AD283D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{251252D5-3116-4036-97CF-7F75B4AD283D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4CBF314-DBB7-4F4A-8A6D-B180C53E86F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4CBF314-DBB7-4F4A-8A6D-B180C53E86F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4CBF314-DBB7-4F4A-8A6D-B180C53E86F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4CBF314-DBB7-4F4A-8A6D-B180C53E86F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

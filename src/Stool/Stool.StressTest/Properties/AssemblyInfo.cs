@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
-// связанные со сборкой.
+// связанных со сборкой.
 [assembly: AssemblyTitle("Stool.StressTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
@@ -16,11 +16,11 @@ using System.Runtime.InteropServices;
 
 // Установка значения False для параметра ComVisible делает типы в этой сборке невидимыми
 // для компонентов COM. Если необходимо обратиться к типу в этой сборке через
-// COM, задайте атрибуту ComVisible значение TRUE для этого типа.
+// COM, следует установить атрибут ComVisible в TRUE для этого типа.
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("018b4f95-2757-42ed-9bda-68390e3c5206")]
+[assembly: Guid("d4cbf314-dbb7-4f4a-8a6d-b180c53e86f5")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //
