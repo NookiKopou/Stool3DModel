@@ -88,9 +88,7 @@ namespace StoolModel
             }
             return true;
         }
-
-        // TODO: XML
-        // TODO: тесты
+        
         /// <summary>
         /// Проверка на равенство объектов класса
         /// </summary>
